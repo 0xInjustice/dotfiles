@@ -1,0 +1,11 @@
+[Unit]
+Description=kanata
+
+[Service]
+Restart=always
+RestartSec=3
+ExecStart=/usr/bin/kanata -c /home/injustice/.config/kanata/config.kbd
+Nice=-20
+
+[Install]
+WantedBy=default.target
