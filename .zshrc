@@ -86,4 +86,4 @@ alias gitfetch=' git fetch --all | git reset --hard origin/main'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
+neofetch
