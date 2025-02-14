@@ -106,10 +106,13 @@ stow --adopt .
 sudo pacman -Sy qemu-full virt-manager dnsmasq bridge-utils libguestfs iptables-nft vde2 openbsd-netcat
 sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service
-sudo vim /etc/libvirt/libvirtd.conf
 ```
 
-##### and uncomment these lines unix_sock_group = "libvert" & unix_sock_rw_perms = "0770"
+### uncomment these lines unix_sock_group = "libvert" & unix_sock_rw_perms = "0770"
+
+```bash
+sudo vim /etc/libvirt/libvirtd.conf
+```
 
 ```bash
 sudo usermod -a -G libvirt $(whoami)
