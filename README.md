@@ -143,3 +143,19 @@ sudo virsh net-list --all
 sudo virsh net-start default
 sudo virsh net-autostart default
 ```
+
+### Commit Message Guidelines
+
+- **feat**: A new feature is introduced with the changes.
+- **fix**: A bug fix has occurred.
+- **chore**: Changes that do not relate to a fix or feature and don't modify `src` or `test` files (e.g., updating dependencies).
+- **refactor**: Refactored code that neither fixes a bug nor adds a feature.
+- **docs**: Updates to documentation such as the README or other markdown files.
+- **style**: Changes that do not affect the meaning of the code (e.g., code formatting, white-space, missing semicolons, etc.).
+- **test**: Adding new tests or correcting previous tests.
+- **perf**: Performance improvements.
+- **ci**: Continuous integration related changes.
+- **build**: Changes that affect the build system or external dependencies.
+- **revert**: Reverts a previous commit.
+
+Please ensure that commit messages are clear and descriptive. This helps in automating releases, generating changelogs, and simplifying the review process.
