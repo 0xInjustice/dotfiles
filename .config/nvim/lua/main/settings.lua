@@ -5,6 +5,7 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.showmatch = true
 vim.opt.ignorecase = true
+vim.opt.wrap = false
 
 vim.opt.termguicolors = true
 vim.opt.hlsearch = true
