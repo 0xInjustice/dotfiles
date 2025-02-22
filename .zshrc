@@ -83,6 +83,8 @@ alias gitpushdate=' git add --all && git commit -m "$(date)" && git push --force
 alias pacins='sudo pacman -Sy'
 alias gitfetch=' git fetch --all | git reset --hard origin/main'
 
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export PATH="$JAVA_HOME/bin:$PATH"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

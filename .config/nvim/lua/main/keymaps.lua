@@ -2,7 +2,8 @@ vim.g.mapleader = " "
 local keymap = vim.keymap.set
 
 -- Insert and visual mode exit with `jk`
-keymap("i", "<leader>jk", "<Esc>")
+keymap("i", "mm", "<Esc>")
+keymap("i", "ii", "<Esc>")
 keymap("v", "<leader>jk", "<Esc>")
 
 -- Delete without affecting the register
