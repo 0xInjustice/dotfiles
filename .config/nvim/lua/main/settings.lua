@@ -19,7 +19,7 @@ vim.opt.shiftwidth = 4
 
 vim.opt.updatetime = 300
 vim.opt.wildmode = "longest,list"
-vim.opt.colorcolumn = "80" -- replaces vim.opt.cc=80
+vim.opt.colorcolumn = "120" -- replaces vim.opt.cc=80
 vim.opt.cursorline = true
 
 vim.opt.undofile = true
