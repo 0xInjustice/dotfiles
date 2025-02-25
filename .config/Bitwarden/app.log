@@ -1,3 +1,0 @@
-[2025-02-25 20:27:40.321] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
-[2025-02-25 20:27:40.321] [error] Refresh token not found in secure storage. Access token will fail to refresh upon expiration or manual refresh.
-[2025-02-25 20:27:40.325] [error] Error refreshing access token:  Error: Cannot refresh access token, no refresh token or api keys are stored.

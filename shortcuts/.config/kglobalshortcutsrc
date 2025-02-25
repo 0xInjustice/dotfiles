@@ -1,6 +1,7 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
 switch-to-activity-c967e805-8b6e-40f2-a820-aa2aad363e6d=none,none,Switch to activity "Default"
+switch-to-activity-c9f92231-d05a-49f0-ad3c-210bb9839b9a=none,none,Switch to activity "Default"
 switch-to-activity-d358a4cb-995c-4f81-80eb-bc2ed7d7a8b4=none,none,Switch to activity "Default"
 switch-to-activity-ebf84efb-9f52-4e52-8887-e833335da8ca=none,none,Switch to activity "Default"
 switch-to-activity-f0f67068-1e18-42b3-aeeb-51b436035bee=none,none,Switch to activity "Default"

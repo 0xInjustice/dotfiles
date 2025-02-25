@@ -1,4 +1,0 @@
-$mod= SUPER # Sets "Windows" key as main modifier
-
-bind = $mod, t, fullscreen
-bind = $mod, u, togglefloating
