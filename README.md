@@ -1,7 +1,6 @@
 ##### Packages To install``
 
-```bash
-sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync
+```bash sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync
 yay -S  oh-my-posh kanata spotify hyprshot #install yay first
 ```
 
@@ -41,9 +40,9 @@ sudo auto-cpufreq --install
 #### Tmux
 
 ```bash
- rm ~/dotfiles/.config/tmux/plugins/tpm  -rf
- rm ~/dotfiles/.config/tmux/plugins/tmux-themepack/ -rf
- git clone https://github.com/tmux-plugins/tpm ~/dotfiles/.config/tmux/plugins/tpm
+ rm ~/dotfiles/tmux/.config/tmux/plugins/tpm  -rf
+ rm ~/dotfiles/tmux/.config/tmux/plugins/tmux-themepack/ -rf
+ git clone https://github.com/tmux-plugins/tpm ~/dotfiles/tmux/.config/tmux/plugins/tpm
 ```
 
 #### Kanata
