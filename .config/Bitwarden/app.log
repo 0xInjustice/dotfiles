@@ -1,0 +1,140 @@
+[2025-02-24 20:18:33.113] [info]  No state version found, assuming empty state.
+[2025-02-24 20:18:33.248] [info]  Coredumps are disabled in renderer process
+[2025-02-24 20:18:34.903] [info]  State version: 69
+[2025-02-24 20:18:35.744] [info]  Self-host environment did not respond in time, emitting previous config.
+[2025-02-24 20:18:35.757] [info]  Retrieving application id
+[2025-02-24 20:18:36.081] [info]  SSH agent started
+[2025-02-24 20:18:46.520] [info]  Retrieving application id
+[2025-02-24 20:18:54.256] [info]  Retrieving application id
+[2025-02-24 20:18:54.930] [info]  Active account changed, clearing SSH keys
+[2025-02-24 20:18:54.963] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:54.966] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:54.969] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:54.969] [error] SetAccessToken: storing encrypted access token in secure storage failed. Falling back to disk storage. Error: New Access token key unable to be retrieved from secure storage.
+[2025-02-24 20:18:54.973] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:54.976] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:54.976] [error] SetRefreshToken: storing refresh token in secure storage failed. Falling back to disk storage. Error: Refresh token failed to save to secure storage.
+[2025-02-24 20:18:55.003] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.006] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.007] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.008] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.009] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.024] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.031] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.032] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.044] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.053] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.250] [info]  Finished search indexing
+[2025-02-24 20:18:55.514] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.517] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.520] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.521] [error] SetAccessToken: storing encrypted access token in secure storage failed. Falling back to disk storage. Error: New Access token key unable to be retrieved from secure storage.
+[2025-02-24 20:18:55.525] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.528] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.528] [error] SetRefreshToken: storing refresh token in secure storage failed. Falling back to disk storage. Error: Refresh token failed to save to secure storage.
+[2025-02-24 20:18:55.532] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:55.536] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:57.164] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-24 20:18:57.225] [info]  Starting decryption using multithreading with 1 workers for 101 items
+[2025-02-24 20:18:57.311] [info]  Finished decrypting 101 items using 1 workers
+[2025-02-24 20:18:57.327] [info]  Finished search indexing
+[2025-02-25 15:53:03.816] [info]  State version: 69
+[2025-02-25 15:53:03.820] [info]  Migrator MinVersionMigrator (to version 3) should migrate: false - up
+[2025-02-25 15:53:03.820] [info]  Migrator RemoveEverBeenUnlockedMigrator (to version 4) should migrate: false - up
+[2025-02-25 15:53:03.820] [info]  Migrator AddKeyTypeToOrgKeysMigrator (to version 5) should migrate: false - up
+[2025-02-25 15:53:03.820] [info]  Migrator RemoveLegacyEtmKeyMigrator (to version 6) should migrate: false - up
+[2025-02-25 15:53:03.821] [info]  Migrator MoveBiometricAutoPromptToAccount (to version 7) should migrate: false - up
+[2025-02-25 15:53:03.821] [info]  Migrator MoveStateVersionMigrator (to version 8) should migrate: false - up
+[2025-02-25 15:53:03.821] [info]  Migrator MoveBrowserSettingsToGlobal (to version 9) should migrate: false - up
+[2025-02-25 15:53:03.821] [info]  Migrator EverHadUserKeyMigrator (to version 10) should migrate: false - up
+[2025-02-25 15:53:03.821] [info]  Migrator OrganizationKeyMigrator (to version 11) should migrate: false - up
+[2025-02-25 15:53:03.821] [info]  Migrator MoveEnvironmentStateToProviders (to version 12) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator ProviderKeyMigrator (to version 13) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator MoveBiometricClientKeyHalfToStateProviders (to version 14) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator FolderMigrator (to version 15) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator LastSyncMigrator (to version 16) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator EnablePasskeysMigrator (to version 17) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator AutofillSettingsKeyMigrator (to version 18) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator RequirePasswordOnStartMigrator (to version 19) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator PrivateKeyMigrator (to version 20) should migrate: false - up
+[2025-02-25 15:53:03.822] [info]  Migrator CollectionMigrator (to version 21) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator CollapsedGroupingsMigrator (to version 22) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator MoveBiometricPromptsToStateProviders (to version 23) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator SmOnboardingTasksMigrator (to version 24) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator ClearClipboardDelayMigrator (to version 25) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator RevertLastSyncMigrator (to version 26) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator BadgeSettingsMigrator (to version 27) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator MoveBiometricUnlockToStateProviders (to version 28) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator UserNotificationSettingsKeyMigrator (to version 29) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator PolicyMigrator (to version 30) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator EnableContextMenuMigrator (to version 31) should migrate: false - up
+[2025-02-25 15:53:03.823] [info]  Migrator PreferredLanguageMigrator (to version 32) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator AppIdMigrator (to version 33) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator DomainSettingsMigrator (to version 34) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator MoveThemeToStateProviderMigrator (to version 35) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator VaultSettingsKeyMigrator (to version 36) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator AvatarColorMigrator (to version 37) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator TokenServiceStateProviderMigrator (to version 38) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator MoveBillingAccountProfileMigrator (to version 39) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator OrganizationMigrator (to version 40) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator EventCollectionMigrator (to version 41) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator EnableFaviconMigrator (to version 42) should migrate: false - up
+[2025-02-25 15:53:03.824] [info]  Migrator AutoConfirmFingerPrintsMigrator (to version 43) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator UserDecryptionOptionsMigrator (to version 44) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator MergeEnvironmentState (to version 45) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator DeleteBiometricPromptCancelledData (to version 46) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator MoveDesktopSettingsMigrator (to version 47) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator MoveDdgToStateProviderMigrator (to version 48) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator AccountServerConfigMigrator (to version 49) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator KeyConnectorMigrator (to version 50) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator RememberedEmailMigrator (to version 51) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator DeleteInstalledVersion (to version 52) should migrate: false - up
+[2025-02-25 15:53:03.825] [info]  Migrator DeviceTrustServiceStateProviderMigrator (to version 53) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator SendMigrator (to version 54) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator MoveMasterKeyStateToProviderMigrator (to version 55) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator AuthRequestMigrator (to version 56) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator CipherServiceMigrator (to version 57) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator RemoveRefreshTokenMigratedFlagMigrator (to version 58) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator KdfConfigMigrator (to version 59) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator KnownAccountsMigrator (to version 60) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator PinStateMigrator (to version 61) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator VaultTimeoutSettingsServiceStateProviderMigrator (to version 62) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator PasswordOptionsMigrator (to version 63) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator GeneratorHistoryMigrator (to version 64) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator ForwarderOptionsMigrator (to version 65) should migrate: false - up
+[2025-02-25 15:53:03.826] [info]  Migrator MoveFinalDesktopSettingsMigrator (to version 66) should migrate: false - up
+[2025-02-25 15:53:03.827] [info]  Migrator RemoveUnassignedItemsBannerDismissed (to version 67) should migrate: false - up
+[2025-02-25 15:53:03.827] [info]  Migrator MoveLastSyncDate (to version 68) should migrate: false - up
+[2025-02-25 15:53:03.827] [info]  Migrator MigrateIncorrectFolderKey (to version 69) should migrate: false - up
+[2025-02-25 15:53:03.994] [info]  Coredumps are disabled in renderer process
+[2025-02-25 15:53:05.659] [info]  State version: 69
+[2025-02-25 15:53:05.668] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:05.705] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:06.465] [info]  Self-host environment did not respond in time, emitting previous config.
+[2025-02-25 15:53:06.486] [info]  SSH agent started
+[2025-02-25 15:53:06.911] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:06.916] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:06.919] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:06.919] [error] SetAccessToken: storing encrypted access token in secure storage failed. Falling back to disk storage. Error: New Access token key unable to be retrieved from secure storage.
+[2025-02-25 15:53:06.925] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:06.928] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:06.929] [error] SetRefreshToken: storing refresh token in secure storage failed. Falling back to disk storage. Error: Refresh token failed to save to secure storage.
+[2025-02-25 15:53:06.936] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:06.939] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:08.116] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.741] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.746] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.746] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.749] [info]  Error: DBus error service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.750] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.765] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.766] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.769] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:14.773] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:15.165] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:15.174] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:53:15.183] [info]  Starting decryption using multithreading with 1 workers for 101 items
+[2025-02-25 15:53:15.279] [info]  Finished decrypting 101 items using 1 workers
+[2025-02-25 15:53:15.302] [info]  Finished search indexing
+[2025-02-25 15:54:02.177] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
+[2025-02-25 15:54:02.180] [info]  Error: service error org.freedesktop.zbus.Error: The name is not activatable
