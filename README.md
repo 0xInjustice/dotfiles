@@ -40,9 +40,9 @@ sudo auto-cpufreq --install
 #### Tmux
 
 ```bash
- rm ~/dotfiles/tmux/.config/tmux/plugins/tpm  -rf
- rm ~/dotfiles/tmux/.config/tmux/plugins/tmux-themepack/ -rf
- git clone https://github.com/tmux-plugins/tpm ~/dotfiles/tmux/.config/tmux/plugins/tpm
+ rm ~/.config/tmux/plugins/tpm  -rf
+ rm ~/.config/tmux/plugins/tmux-themepack/ -rf
+ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 ```
 
 #### Kanata
