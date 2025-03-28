@@ -127,6 +127,7 @@ return {
 						"typescriptreact",
 						"javascriptreact",
 						"css",
+						"rust",
 						"sass",
 						"scss",
 						"less",
