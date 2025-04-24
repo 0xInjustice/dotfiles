@@ -18,6 +18,7 @@ keymap("v", "<leader>p", '"_dp')
 -- Split windows
 keymap("n", "<leader>sv", ":vsplit<CR>")
 keymap("n", "<leader>sh", ":split<CR>")
+keymap("n", "<leader>tt", ":terminal<CR>")
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h")
