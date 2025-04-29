@@ -19,7 +19,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '{{ .Path }}'
-    foreground = 'white'
+    foreground = 'blue'
     background = 'transparent'
     type = 'path'
     style = 'plain'
@@ -47,7 +47,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '{{ .FormattedMs }}'
-    foreground = 'white'
+    foreground = 'yellow'
     background = 'transparent'
     type = 'executiontime'
     style = 'plain'
