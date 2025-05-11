@@ -32,7 +32,7 @@ window#waybar .widget {
   /* Key addition: horizontal margins between each workspace */
   margin: 0 4px; /* 4px on left/right of each button */ /* :contentReference[oaicite:0]{index=0} */
   padding: 2px 6px; /* optional: inner padding for click area */
-  color: #a2d2ff;
+  color: #000000;
 }
 
 #workspaces button:hover {
@@ -90,10 +90,10 @@ window#waybar .widget {
 
 /* Network (Wi-Fi) accent */
 #network {
-  background-color: #111111;
+  background-color: #bbbbbb;
 }
 #network.connected {
-  color: #a2d2ff; /* light-blue when connected */
+  color: #aaaaaa; /* light-blue when connected */
 }
 #network.disconnected {
   background-color: #330000;
