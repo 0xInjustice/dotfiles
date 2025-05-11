@@ -1,141 +1,116 @@
-/* Monochrome with light-blue Wi-Fi accent + consistent margins */
-
-/* Base reset */
 * {
-  border: none;
-  border-radius: 4px;
-  font-family: "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+  min-height: 0;
+  min-width: 0;
+  font-family: Lexend, "JetBrainsMono NFP";
   font-size: 10px;
-  margin: 0;
-  padding: 0;
-  color: #ffffff;
-  background: #000000;
+  font-weight: 600;
 }
 
-/* Bar container */
 window#waybar {
-  background-color: rgba(0, 0, 0, 0.9);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  /* background-color: #1e1e2e; */
+  /* background-color: #181825; */
+  background-color: #000;
+  /* background-color: rgba(24, 24, 37, 0.6); */
 }
 
-/* Module spacing (between whole modules) */
-window#waybar .widget {
-  margin: 0 4px; /* 4px gap left/right of each module */
-  padding: 4px 8px;
-}
-
-/* ——————————————————————————————————————————————— */
-/* WORKSPACES BUTTONS: add gaps between numbers/icons */
-/* ——————————————————————————————————————————————— */
 #workspaces button {
-  background: none;
-  box-shadow: inset 0 -2px transparent;
-  /* Key addition: horizontal margins between each workspace */
-  margin: 0 4px; /* 4px on left/right of each button */ /* :contentReference[oaicite:0]{index=0} */
-  padding: 2px 6px; /* optional: inner padding for click area */
-  color: #000000;
+  padding: 0.3rem 0.6rem;
+  margin: 0.4rem 0.25rem;
+  border-radius: 6px;
+  /* background-color: #181825; */
+  background-color: #1e1e2e;
+  color: #cdd6f4;
 }
 
 #workspaces button:hover {
-  box-shadow: inset 0 -2px #ffffff;
+  color: #1e1e2e;
+  background-color: #cdd6f4;
 }
 
-#workspaces button.focused {
-  background-color: #222222;
-  box-shadow: inset 0 -2px #ffffff;
+#workspaces button.active {
+  background-color: #1e1e2e;
+  color: #89b4fa;
 }
 
 #workspaces button.urgent {
-  background-color: #550000;
+  background-color: #1e1e2e;
+  color: #f38ba8;
 }
 
-/* Mode indicator */
-#mode {
-  background-color: #222222;
-}
-
-/* Window title */
-#window {
-  background: none;
-}
-
-/* Clock */
-#clock {
-  background-color: #111111;
-}
-
-/* System modules */
+#clock,
+#pulseaudio,
+#custom-logo,
+#custom-power,
+#custom-spotify,
+#custom-notification,
 #cpu,
-#memory,
-#backlight,
-#battery,
-#battery#bat2,
 #tray,
-#custom-media,
-#mpd,
-#idle_inhibitor {
-  background-color: #111111;
+#memory,
+#window,
+#mpris {
+  padding: 0.3rem 0.6rem;
+  margin: 0.4rem 0.25rem;
+  border-radius: 6px;
+  /* background-color: #181825; */
+  background-color: #1e1e2e;
 }
 
-/* Battery critical blink */
-@keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: #000000;
-  }
-}
-#battery.critical:not(.charging) {
-  background-color: #880000;
-  animation: blink 0.5s linear infinite alternate;
+#mpris.playing {
+  color: #a6e3a1;
 }
 
-/* Network (Wi-Fi) accent */
-#network {
-  background-color: #bbbbbb;
-}
-#network.connected {
-  color: #aaaaaa; /* light-blue when connected */
-}
-#network.disconnected {
-  background-color: #330000;
-  color: #ff5555;
+#mpris.paused {
+  color: #9399b2;
 }
 
-/* Pulseaudio */
+#custom-sep {
+  padding: 0px;
+  color: #585b70;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+#cpu {
+  color: #94e2d5;
+}
+
+#memory {
+  color: #cba6f7;
+}
+
+#clock {
+  color: #74c7ec;
+}
+
+#clock.simpleclock {
+  color: #89b4fa;
+}
+
+#window {
+  color: #cdd6f4;
+}
+
 #pulseaudio {
-  background-color: #111111;
+  color: #b4befe;
 }
 
-/* Custom media */
-#custom-media {
-  background-color: #111111;
-  min-width: 100px;
+#pulseaudio.muted {
+  color: #a6adc8;
 }
 
-/* Temperature */
-#temperature {
-  background-color: #111111;
-}
-#temperature.critical {
-  background-color: #880000;
+#custom-logo {
+  color: #89b4fa;
 }
 
-/* Idle inhibitor */
-#idle_inhibitor {
-  background-color: #111111;
-}
-#idle_inhibitor.activated {
-  background-color: #ffffff;
-  color: #000000;
+#custom-power {
+  color: #f38ba8;
 }
 
-/* Tray */
-#tray {
-  background-color: #111111;
-}
-
-/* Focus states */
-label:focus,
-button:focus {
-  outline: none;
-  background-color: #222222;
+tooltip {
+  background-color: #181825;
+  border: 2px solid #89b4fa;
 }
