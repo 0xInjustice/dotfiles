@@ -114,3 +114,36 @@ tooltip {
   background-color: #181825;
   border: 2px solid #89b4fa;
 }
+
+#battery {
+  padding: 0.3rem 0.6rem;
+  margin: 0.4rem 0.25rem;
+  border-radius: 6px;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+}
+
+/* Charging state */
+#battery.charging {
+  color: #a6e3a1;
+}
+
+/* Discharging state */
+#battery.discharging {
+  color: #f9e2af;
+}
+
+/* Full battery */
+#battery.full {
+  color: #89b4fa;
+}
+
+/* Warning state (e.g., capacity ≤ 30%) */
+#battery.warning {
+  color: #fab387;
+}
+
+/* Critical state (e.g., capacity ≤ 15%) */
+#battery.critical {
+  color: #f38ba8;
+}
