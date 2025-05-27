@@ -1,4 +1,4 @@
-##### Packages To install``
+##### Packages To install
 
 ```bash sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync
 yay -S  oh-my-posh kanata spotify hyprshot #install yay first
@@ -101,7 +101,7 @@ stow --adopt .
 #### Qemu
 
 ```bash
-#https://www.youtube.com/watch?v=2wUZ5KdaFhU
+# https://www.youtube.com/watch?v=2wUZ5KdaFhU
 sudo pacman -Sy qemu-full virt-manager dnsmasq bridge-utils libguestfs iptables-nft vde2 openbsd-netcat
 sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service
