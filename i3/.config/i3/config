@@ -1,0 +1,81 @@
+# Set Mod key
+set $mod Mod4
+
+# Launch applications
+bindsym $mod+Return exec kitty
+bindsym $mod+f exec firefox
+bindsym $mod+e exec dolphin
+bindsym $mod+space exec wofi --show drun
+bindsym Mod1+q exec qutebrowser
+bindsym Mod1+s exec sioyek
+bindsym Mod1+e exec easyeffects
+
+# Window management
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+v split toggle
+bindsym $mod+z exec hyprlock
+bindsym $mod+m exit
+bindsym $mod+b split h
+bindsym $mod+p split v
+
+# Focus movement
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+n focus up
+bindsym $mod+down focus down
+bindsym Mod1+j focus left
+bindsym Mod1+Tab focus right
+
+# Move windows
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+
+# Workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Fullscreen toggle
+bindsym Mod1+h fullscreen toggle
+bindsym Mod1+p fullscreen toggle
+bindsym $mod+i fullscreen toggle
+
+# Screenshot
+bindsym Print exec hyprshot -m window
+bindsym Shift+Print exec hyprshot -m region
+
+# Media controls
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl s +10%
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+
+# Waybar toggle (adjust the script path as needed)
+bindsym $mod+w exec bash $HOME/.config/waybar/waybar.sh
+
