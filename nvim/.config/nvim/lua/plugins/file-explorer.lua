@@ -4,5 +4,8 @@ return {
 	config = function()
 		require("nvim-tree").setup({})
 		vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
+		git = {
+			enable = false, -- Disable Git integration entirely
+		}
 	end,
 }
