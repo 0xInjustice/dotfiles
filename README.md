@@ -1,6 +1,7 @@
 ##### Packages To install
 
-```bash sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync
+```bash
+sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync
 yay -S  oh-my-posh kanata spotify hyprshot #install yay first
 ```
 
@@ -88,14 +89,6 @@ git config user.name ""
 git config --global core.editor nvim
 git remote set-url origin https://scuzzlebuzzle:<MYTOKEN>@github.com/scuzzlebuzzle/ol3-1.git
 
-```
-
-#### Clone the Repository
-
-```bash
-git clone https://github.com/mrsujnan/dotfiles.git
-cd dotfiles
-stow --adopt .
 ```
 
 #### Qemu
