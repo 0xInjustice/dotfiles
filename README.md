@@ -108,9 +108,17 @@ sudo vim /etc/libvirt/libvirtd.conf
 
 ```bash
 sudo usermod -a -G libvirt $(whoami)
-newgrp libvirt #add user to libvert group
+newgrp libvirt
 sudo systemctl restart libvirtd.service
-sudo vim /etc/libvirt/network.conf # firewell backend to iptables
+```
+
+# firewell backend to iptables
+
+```bash
+sudo vim /etc/libvirt/network.conf
+```
+
+```bash
 sudo systemctl enable iptables.service
 sudo systemctl start iptables.service
 sudo systemctl restart libvirtd.service
