@@ -1,2 +1,4 @@
 .config/nvim/lazy-lock.
 tmux/.config/tmux/plugins/tmux-themepack/
+nvim/.config/nvim/lazy-lock.json
+
