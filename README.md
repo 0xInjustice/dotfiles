@@ -159,3 +159,12 @@ sudo virsh net-autostart default
 - **revert**: Reverts a previous commit.
 
 Please ensure that commit messages are clear and descriptive. This helps in automating releases, generating changelogs, and simplifying the review process.
+
+```
+
+```
+
+export **GLX_VENDOR_LIBRARY_NAME=nvidia
+export **VK_LAYER_NV_optimus=NVIDIA_only
+davinci-resolve
+"
