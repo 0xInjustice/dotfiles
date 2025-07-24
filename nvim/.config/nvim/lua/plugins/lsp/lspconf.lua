@@ -104,7 +104,6 @@ return {
 						end,
 					})
 				end,
-				-- graphql, emmet_ls, lua_ls — covered by default handler
 			},
 		})
 	end,
