@@ -81,6 +81,11 @@ alias pacins='sudo pacman -S'
 alias blestrt='sudo systemctl start bluetooth '
 alias blestop='sudo systemctl stop bluetooth '
 
+alias gst='git status'
+alias gad='git add'
+alias gcmt='git commit'
+alias glg='git log'
+
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH="$JAVA_HOME/bin:$PATH"
 # Shell integrations
