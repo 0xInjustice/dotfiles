@@ -5,6 +5,7 @@ vim.opt.mouse = "a"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.backspace = "indent,eol,start"
 
 -- Search
 vim.opt.showmatch = true
@@ -19,9 +20,9 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- Tabs: 8-space tabs for all files
-vim.opt.tabstop = 8 -- Visual width of tab
-vim.opt.softtabstop = 8 -- Editing width of tab
-vim.opt.shiftwidth = 8 -- Indentation width
+vim.opt.tabstop = 4 -- Visual width of tab
+vim.opt.softtabstop = 4 -- Editing width of tab
+vim.opt.shiftwidth = 4 -- Indentation width
 vim.opt.expandtab = false -- Use real tabs (change to true for spaces)
 vim.opt.autoindent = true
 

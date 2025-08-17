@@ -1,9 +1,17 @@
--- Telescope for fuzzy finding
 return {
 	"nvim-telescope/telescope.nvim",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	branch = "0.1.x",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		"nvim-tree/nvim-web-devicons",
+		"folke/todo-comments.nvim",
+	},
 	config = function()
+		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+		local transform_mod = require("telescope.actions.mt").transform_mod
+
 		require("telescope").setup({
 			defaults = {
 				initial_mode = "normal",
@@ -16,6 +24,7 @@ return {
 			},
 		})
 
+		telescope.load_extension("fzf")
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
 		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Search Text" })

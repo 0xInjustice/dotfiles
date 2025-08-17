@@ -19,9 +19,9 @@ return {
 			local bufopts = { buffer = bufnr, silent = true }
 			local km = vim.keymap
 			-- ◾ set tab and indentation to 8 spaces, no expandtab
-			vim.bo[bufnr].tabstop = 8
-			vim.bo[bufnr].shiftwidth = 8
-			vim.bo[bufnr].softtabstop = 8
+			vim.bo[bufnr].tabstop = 4
+			vim.bo[bufnr].shiftwidth = 4
+			vim.bo[bufnr].softtabstop = 4
 			vim.bo[bufnr].expandtab = false
 			vim.bo[bufnr].autoindent = true
 			vim.bo[bufnr].smartindent = true
@@ -82,9 +82,9 @@ return {
 						capabilities = capabilities,
 						on_attach = function(client, bufnr)
 							-- only clangd: enforce 8-space indent settings
-							vim.bo[bufnr].tabstop = 8
-							vim.bo[bufnr].shiftwidth = 8
-							vim.bo[bufnr].softtabstop = 8
+							vim.bo[bufnr].tabstop = 4
+							vim.bo[bufnr].shiftwidth = 4
+							vim.bo[bufnr].softtabstop = 4
 							vim.bo[bufnr].expandtab = false
 							vim.bo[bufnr].autoindent = true
 							vim.bo[bufnr].smartindent = true
