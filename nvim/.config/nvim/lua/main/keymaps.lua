@@ -3,6 +3,7 @@ local keymap = vim.keymap.set
 
 -- Insert and visual mode exit with `jk`
 keymap("v", "<leader>jk", "<Esc>")
+keymap("i", "<leader>jk", "<Esc>")
 
 -- Delete without affecting the register
 keymap("n", "<leader>d", '"_d')
