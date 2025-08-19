@@ -13,21 +13,6 @@ return {
 				disabled_modes = false,
 				above = 0,
 				below = 0,
-				-- Which elements to always show, ignoring anti conceal behavior. Values can either be
-				-- booleans to fix the behavior or string lists representing modes where anti conceal
-				-- behavior will be ignored. Valid values are:
-				--   bullet
-				--   callout
-				--   check_icon, check_scope
-				--   code_background, code_border, code_language
-				--   dash
-				--   head_background, head_border, head_icon
-				--   indent
-				--   link
-				--   quote
-				--   sign
-				--   table_border
-				--   virtual_lines
 				ignore = {
 					code_background = true,
 					indent = true,
@@ -82,18 +67,16 @@ return {
 				},
 				highlight = "RenderMarkdownLink",
 			},
-			require("render-markdown").setup({
-				checkbox = {
-					custom = {
-						important = {
-							raw = "[~]",
-							rendered = "󰓎 ",
-							highlight = "DiagnosticWarn",
-						},
+			checkbox = {
+				custom = {
+					important = {
+						raw = "[~]",
+						rendered = "󰓎 ",
+						highlight = "DiagnosticWarn",
 					},
 				},
-			}),
-			preset = "none", -- avoid overriding defaults unexpectedly (#3)
+			},
+			preset = "none",
 			max_file_size = 10.0,
 			debounce = 100,
 			win_options = {
@@ -101,6 +84,18 @@ return {
 				concealcursor = { default = vim.o.concealcursor, rendered = "" },
 			},
 			file_types = { "markdown" },
+		})
+
+		-- Optional: Remove trailing newline automatically after rendering
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "RenderMarkdownUpdated",
+			callback = function()
+				local bufnr = vim.api.nvim_get_current_buf()
+				local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+				if #lines > 1 and lines[#lines] == "" then
+					vim.api.nvim_buf_set_lines(bufnr, #lines - 1, #lines, false, {})
+				end
+			end,
 		})
 	end,
 }
