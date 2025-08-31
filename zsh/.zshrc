@@ -41,19 +41,15 @@ bindkey '^k' history-search-forward
 bindkey '^[w' kill-region
 # Bind Ctrl + L to the right arrow key
 bindkey '^h' vi-forward-char
+bindkey '^n' vi-backward-char
 
 # History
 HISTSIZE=20000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -88,6 +84,7 @@ alias glg='git log'
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH="$JAVA_HOME/bin:$PATH"
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
