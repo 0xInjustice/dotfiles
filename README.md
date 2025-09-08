@@ -1,8 +1,8 @@
 ## Packages To install
 
 ```bash
-sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync
-yay -S  oh-my-posh kanata spotify hyprshot #install yay first
+sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync dolphin wofi cliphist brightnessctl
+yay -S  oh-my-posh kanata hyprshot 
 ```
 
 ## Pacman
