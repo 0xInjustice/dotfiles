@@ -1,1 +1,0 @@
-modprobe:kvm_amd nested=1
