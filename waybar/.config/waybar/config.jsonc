@@ -107,3 +107,6 @@
     "tooltip": false
   }
 }
+
+[sound]
+enable = false
