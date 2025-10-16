@@ -2,7 +2,7 @@
 
 ```bash
 sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync dolphin wofi cliphist brightnessctl xdg-desktop-portal-hyprland wireplumber pipewire
-yay -S  oh-my-posh kanata hyprshot xwaylandvideobridge
+yay -S  oh-my-posh kanata hyprshot xwaylandvideobridge sioyek
 ```
 
 ## Pacman
