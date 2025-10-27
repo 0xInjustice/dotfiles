@@ -90,3 +90,4 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+export PATH=$PATH:$HOME/go/bin
