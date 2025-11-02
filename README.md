@@ -1,7 +1,7 @@
 ## Packages To install
 
 ```bash
-sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync dolphin wofi cliphist brightnessctl xdg-desktop-portal-hyprland wireplumber pipewire hyprpaper
+sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync dolphin wofi cliphist brightnessctl xdg-desktop-portal-hyprland wireplumber pipewire hyprpaper noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-indic-otf
 yay -S  oh-my-posh kanata hyprshot xwaylandvideobridge sioyek
 ```
 
