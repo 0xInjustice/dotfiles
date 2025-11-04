@@ -8,7 +8,7 @@ yay -S  oh-my-posh kanata hyprshot xwaylandvideobridge sioyek
 ## Pacman
 
 ```bash
-sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --download-timeout 20 --country India --connection-timeout 25
 sudo vim /etc/pacman.conf # add IloveCandy and uncomment Color
 ```
 
