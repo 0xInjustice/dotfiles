@@ -1,98 +1,126 @@
 {
-  "layer": "bottom",
-  "position": "top",
-  "height": 15,
-  "spacing": 10,
-  "exclusive": true,
-  "gtk-layer-shell": true,
-  "passthrough": false,
-  "fixed-center": true,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
-  "modules-right": [
-    "pulseaudio",
-    "custom/sep",
-    "network",
-    "custom/sep",
-    "battery",
-    "custom/sep",
-    "custom/notification",
-    "custom/sep",
-    "custom/power"
-  ],
-  "hyprland/window": {
-    "format": "{title}"
-  },
-  "hyprland/workspaces": {
-    "on-click": "activate",
-    "all-outputs": true,
-    "disable-scroll": false,
-    "persistent_workspaces": {
-        "*": 10
-    },
-    "format": "{icon}",
-    "format-focused": "<b>{icon}</b>",
-    "format-urgent": "<b>{icon}</b>",
-    "tooltip-format": "{id}: {name} {title}",
-    "format-icons": {
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
-        "7": "7",
-        "8": "8",
-        "9": "9",
-        "10": "10",
-        "special": "S",
-        "default": "○"
-    }
-  },
-  "clock": {
-    "format": "{:%I:%M %p}",
-    "tooltip": false
-  },
-  "pulseaudio": {
-    "format": "{volume}%",
-    "format-muted": "Muted",
-    "on-click": "pavucontrol"
-  },
-  "network": {
-    "format-wifi": "{essid}",
-    "format-ethernet": "{ifname}",
-    "format-disconnected": "Disconnected",
-    "tooltip-format": "{ifname} via {gwaddr}  {ipaddr}/{cidr}",
-    "on-click": "nm-connection-editor"
-  },
-  "battery": {
-    "bat": "BAT1",
-    "interval": 30,
-    "states": {
-      "good": 80,
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{capacity}%",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% "
-  },
-  "custom/sep": {
-    "format": "|",
-    "tooltip": false
-  },
-  "custom/power": {
-    "tooltip": false,
-    "on-click": "wlogout -p layer-shell &",
-    "format": "Power"
-  },
-  "custom/notification": {
-    "escape": true,
-    "exec": "swaync-client -swb",
-    "exec-if": "which swaync-client",
-    "format": "{count}",
-    "on-click": "sleep 0.1 && swaync-client -t -sw",
-    "return-type": "json",
-    "tooltip": false
-  }
+	"layer": "top",
+	"position": "top",
+	"height": 15,
+	"spacing": 2,
+	"exclusive": true,
+	"gtk-layer-shell": true,
+	"passthrough": false,
+	"fixed-center": true,
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": [ "mpris" , "hyprland/window"],
+	"modules-right": [
+		"cpu",
+		"custom/sep",
+		"memory",
+		"custom/sep",
+		"network",
+		"pulseaudio",
+		"custom/sep",
+		"battery",
+		"custom/sep",
+		"clock", 
+		"custom/sep", 
+		"clock#simpleclock",
+		"custom/sep",
+		"tray",
+		"custom/notification",
+		"custom/power"
+	],
+
+	"hyprland/workspaces": {
+		"on-click": "activate",
+		"format": "{id}",
+		"all-outputs": true,
+		"disable-scroll": false,
+		"active-only": false
+	},
+	"hyprland/window": {
+		"format": "{title}"
+	},
+	"tray": {
+		"show-passive-items": true,
+		"spacing": 10
+	},
+	"clock#simpleclock": {
+		"tooltip": false,
+		"format": "{:%H:%M}"
+	},
+	"clock": {
+		"format": "{:%a %d %b}",
+		"calendar": {
+			"format": {
+				"days": "<span weight='normal'>{}</span>",
+				"months": "<span color='#cdd6f4'><b>{}</b></span>",
+				"today": "<span color='#f38ba8' weight='700'><u>{}</u></span>",
+				"weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+				"weeks": "<span color='#a6e3a1'><b>W{}</b></span>"
+			},
+			"mode": "month",
+			"mode-mon-col": 1,
+			"on-scroll": 1
+		},
+		"tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>"
+	},
+	"cpu": {
+		"format": "   {usage}%",
+		"tooltip": true,
+		"interval": 1
+	},
+	"memory": {
+		"format": "    {used:0.1f}GB"
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "    muted",
+		"format-icons": {
+			"headphone": "",
+			"default": ["", "", ""]
+		},
+		"on-click": "pavucontrol"
+	},
+	"network": {
+		"format-wifi": "  {essid}",
+		"format-ethernet": "󰈀 {ifname}",
+		"format-disconnected": "󰖪 Disconnected",
+		"on-click": "nm-connection-editor"
+	},
+	"battery": {
+		"bat": "BAT1",
+		"interval": 30,
+		"states": {
+			"good": 80,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{capacity}% {icon}",
+		"format-charging": "{capacity}% ",
+		"format-plugged": "{capacity}% ",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"custom/sep": {
+		"format": "|",
+		"tooltip": false
+	},
+	"custom/power": {
+		"tooltip": false,
+		"on-click": "wlogout -p layer-shell &",
+		"format": "⏻"
+	},
+	"custom/notification": {
+		"escape": true,
+		"exec": "swaync-client -swb",
+		"exec-if": "which swaync-client",
+		"format": "{icon}",
+		"format-icons": {
+			"none": "󰅺",
+			"notification": "󰡟"
+		},
+		"on-click": "sleep 0.1 && swaync-client -t -sw",
+		"return-type": "json",
+		"tooltip": false
+	}
 }
+
+[sound]
+enable = false
