@@ -5,7 +5,7 @@ return {
 	opts = {
 		modes = {
 			search = {
-				enabled = true,
+				enabled = false, -- <-- disable Flash for / searches
 			},
 			char = {
 				jump_labels = true,
