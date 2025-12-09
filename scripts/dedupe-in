@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+import argparse
+import sys
+from collections import OrderedDict
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
+
+
+def canonical(url):
+    p = urlparse(url.strip())
+    path = p.path
+    q = parse_qsl(p.query, keep_blank_values=True)
+    norm = []
+    for k, _ in q:
+        norm.append((k, "X"))
+    norm.sort()
+    query = urlencode(norm)
+    return urlunparse((p.scheme, p.netloc, path, p.params, query, p.fragment))
+
+
+def run(infile, outfile):
+    clusters = OrderedDict()
+    with open(infile, "r", encoding="utf-8", errors="ignore") as f:
+        for raw in f:
+            u = raw.strip()
+            if not u:
+                continue
+            clusters.setdefault(canonical(u), u)
+    with open(outfile, "w", encoding="utf-8") as o:
+        for rep in clusters.values():
+            o.write(rep + "\n")
+
+
+def usage():
+    sys.stderr.write("usage: dedupe.py -f <inputfile> -o <outputfile>\n")
+    sys.exit(1)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        usage()
+    p = argparse.ArgumentParser(add_help=False)
+    p.add_argument("-f")
+    p.add_argument("-o")
+    args = p.parse_args()
+    if not args.f or not args.o:
+        usage()
+    run(args.f, args.o)
