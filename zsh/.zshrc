@@ -88,4 +88,12 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/go/bin:/home/injustice/.pdtm/go/bin 
+# Generated for pdtm. Do not edit.
+export PATH=$PATH:$HOME/dotfiles/scripts
+
+
+
+# Generated for pdtm. Do not edit.
+export PATH=$PATH:/home/injustice/go
+
