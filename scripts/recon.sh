@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -23,8 +24,8 @@ scan_jsleak() {
 }
 
 domain="$1"
-
 workdir="./$domain"
+
 mkdir -p "$workdir" "$workdir/logs"
 trap 'rm -rf "$workdir"' EXIT
 
@@ -35,29 +36,30 @@ subfinder -d "$domain" -silent -all -recursive -o "$workdir/subfinder.txt" 2>"$w
 assetfinder -subs-only "$domain" > "$workdir/assetfinder.txt" 2>"$workdir/logs/assetfinder.log" &
 wait
 
-sort -u "$workdir"/*.txt > subdomains.txt
+sort -u "$workdir"/*.txt > "$workdir/subdomains.txt"
 
-httpx -l subdomains.txt -mc 404 -silent | cut -d ' ' -f1 > subdomains_404.txt 2>"$workdir/logs/httpx404.log" &
-httpx -l subdomains.txt -mc 403 -silent | cut -d ' ' -f1 > subdomains_403.txt 2>"$workdir/logs/httpx403.log" &
-httpx -l subdomains.txt -ports 80,443,8080,8000,8888 -threads 200 -timeout 5 -retries 3 -silent > livesubdomains.txt 2>"$workdir/logs/httpx_live.log" &
+httpx -l "$workdir/subdomains.txt" -mc 404 -silent | cut -d ' ' -f1 > "$workdir/subdomains_404.txt" 2>"$workdir/logs/httpx404.log" &
+httpx -l "$workdir/subdomains.txt" -mc 403 -silent | cut -d ' ' -f1 > "$workdir/subdomains_403.txt" 2>"$workdir/logs/httpx403.log" &
+httpx -l "$workdir/subdomains.txt" -ports 80,443,8080,8000,8888 -threads 200 -timeout 5 -retries 3 -silent > "$workdir/livesubdomains.txt" 2>"$workdir/logs/httpx_live.log" &
 wait
 
 dirsearch \
     --exclude-status=404 \
     -w ~/tools/ultimate_discovery/ultimate-discovery.txt \
-    -l subdomains_404.txt \
+    -l "$workdir/subdomains_404.txt" \
     -t 250 \
-    -o results_404.txt \
+    -o "$workdir/results_404.txt" \
     2>"$workdir/logs/dirsearch.log" &
 
-katana -u livesubdomains.txt -d 2 -silent -o urls-katana.txt 2>"$workdir/logs/katana.log" &
-waybackurls "$domain" | sort -u > urls-wayback.txt 2>"$workdir/logs/wayback.log" &
-gau "$domain" | sort -u > urls-gau.txt 2>"$workdir/logs/gau.log" &
-urlfinder -d "$domain" | sort -u > urls-urlfinder.txt 2>"$workdir/logs/urlfinder.log" &
+katana -u "$workdir/livesubdomains.txt" -d 2 -silent -o "$workdir/urls-katana.txt" 2>"$workdir/logs/katana.log" &
+waybackurls "$domain" | sort -u > "$workdir/urls-wayback.txt" 2>"$workdir/logs/wayback.log" &
+gau "$domain" | sort -u > "$workdir/urls-gau.txt" 2>"$workdir/logs/gau.log" &
+urlfinder -d "$domain" | sort -u > "$workdir/urls-urlfinder.txt" 2>"$workdir/logs/urlfinder.log" &
 wait
 
-cat urls-*.txt | sort -u > urls-all.txt
+cat "$workdir"/urls-*.txt | sort -u > "$workdir/urls-all.txt"
 
+cd "$workdir"
 gfcat
 mk_js
 scan_jsleak
