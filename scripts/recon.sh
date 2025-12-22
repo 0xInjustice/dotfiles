@@ -43,13 +43,13 @@ httpx -l "$workdir/subdomains.txt" -mc 403 -silent | cut -d ' ' -f1 > "$workdir/
 httpx -l "$workdir/subdomains.txt" -ports 80,443,8080,8000,8888 -threads 200 -timeout 5 -retries 3 -silent > "$workdir/livesubdomains.txt" 2>"$workdir/logs/httpx_live.log" &
 wait
 
-dirsearch \
-    --exclude-status=404 \
-    -w ~/tools/ultimate_discovery/ultimate-discovery.txt \
-    -l "$workdir/subdomains_404.txt" \
-    -t 250 \
-    -o "$workdir/results_404.txt" \
-    2>"$workdir/logs/dirsearch.log" &
+# dirsearch \
+#     --exclude-status=404 \
+#     -w ~/tools/ultimate_discovery/ultimate-discovery.txt \
+#     -l "$workdir/subdomains_404.txt" \
+#     -t 250 \
+#     -o "$workdir/results_404.txt" \
+#     2>"$workdir/logs/dirsearch.log" &
 
 katana -u "$workdir/livesubdomains.txt" -d 2 -silent -o "$workdir/urls-katana.txt" 2>"$workdir/logs/katana.log" &
 waybackurls "$domain" | sort -u > "$workdir/urls-wayback.txt" 2>"$workdir/logs/wayback.log" &

@@ -3,28 +3,17 @@
   "blocks": [
     {
       "alignment": "left",
+      "newline": true,
       "segments": [
         {
-          "foreground": "#ffffff",
-          "style": "plain",
-          "template": "{{ .UserName }} ",
-          "type": "session"
-        },
-        {
-          "foreground": "#81A1C1",
+          "foreground": "#0096FF",
           "properties": {
             "style": "full"
           },
           "style": "plain",
           "template": "{{ .Path }} ",
           "type": "path"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "left",
-      "segments": [
+        },
         {
           "foreground": "#6C6C6C",
           "properties": {
@@ -38,13 +27,7 @@
           "style": "plain",
           "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#FFAFD7>*</>{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
           "type": "git"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "left",
-      "segments": [
+        },
         {
           "foreground": "#A3BE8C",
           "properties": {
@@ -61,6 +44,12 @@
       "alignment": "left",
       "newline": true,
       "segments": [
+        {
+          "foreground": "#ffffff",
+          "style": "plain",
+          "template": "{{ .UserName }}@<#FF0000>{{ .HostName }}</> ",
+          "type": "session"
+        },
         {
           "foreground": "#B48EAD",
           "foreground_templates": ["{{ if gt .Code 0 }}#BF616A{{ end }}"],
