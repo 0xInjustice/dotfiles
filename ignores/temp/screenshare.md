@@ -1,6 +1,6 @@
 Below is a concise, reference-backed technical guide covering items (1)–(8) for Wayland screen-sharing on Hyprland (Arch Linux). Each numbered section gives the required technologies, concrete package names and commands, recommended configuration snippets, and troubleshooting notes — with **at least three links** supporting the key claims per section.
 
-I.  I’ll assume you want a working WebRTC / browser screen-share stack (PipeWire + xdg-desktop-portal + Hyprland portal backend). If you want me to produce a ready-to-run dotfile snippet (e.g., `hyprland.conf` lines, systemd commands collected into a script), say so and I’ll produce it immediately.
+I. I’ll assume you want a working WebRTC / browser screen-share stack (PipeWire + xdg-desktop-portal + Hyprland portal backend). If you want me to produce a ready-to-run dotfile snippet (e.g., `hyprland.conf` lines, systemd commands collected into a script), say so and I’ll produce it immediately.
 
 ---
 
@@ -10,9 +10,9 @@ Summary (short): On Wayland the browser cannot directly capture compositor surfa
 
 Key points and why they matter:
 
-* **PipeWire**: provides the low-level media graph and the stream endpoint used by WebRTC for screen frames (the capture stream runs through PipeWire). ([ArchWiki][1])
-* **xdg-desktop-portal**: abstracts compositor specifics — the browser talks to this portal over DBus to request screen capture. The portal needs a **backend/implementation** that knows how to ask the compositor for frames. ([ArchWiki][2])
-* **Compositor portal backend** (for Hyprland): `xdg-desktop-portal-hyprland` is the Hyprland backend that implements the portal’s ScreenCast interface and creates the PipeWire source. Without a backend the portal cannot supply a capture stream. ([Arch Linux][3])
+- **PipeWire**: provides the low-level media graph and the stream endpoint used by WebRTC for screen frames (the capture stream runs through PipeWire). ([ArchWiki][1])
+- **xdg-desktop-portal**: abstracts compositor specifics — the browser talks to this portal over DBus to request screen capture. The portal needs a **backend/implementation** that knows how to ask the compositor for frames. ([ArchWiki][2])
+- **Compositor portal backend** (for Hyprland): `xdg-desktop-portal-hyprland` is the Hyprland backend that implements the portal’s ScreenCast interface and creates the PipeWire source. Without a backend the portal cannot supply a capture stream. ([Arch Linux][3])
 
 Practical implication: for working Wayland screen sharing you need (a) PipeWire (and a session manager such as WirePlumber or pipewire-media-session), (b) xdg-desktop-portal, and (c) a portal backend that matches your compositor — for Hyprland that’s `xdg-desktop-portal-hyprland`.
 
@@ -39,8 +39,8 @@ sudo pacman -Syu pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desk
 
 Additional notes / links:
 
-* Arch package page for `xdg-desktop-portal-hyprland` (package metadata). ([Arch Linux][3])
-* ArchWiki PipeWire / XDG Desktop Portal pages for reasoning and dependencies. ([ArchWiki][1])
+- Arch package page for `xdg-desktop-portal-hyprland` (package metadata). ([Arch Linux][3])
+- ArchWiki PipeWire / XDG Desktop Portal pages for reasoning and dependencies. ([ArchWiki][1])
 
 ---
 
@@ -71,16 +71,16 @@ References for these units and how Arch manages PipeWire and portals: ArchWiki P
 
 Important environment variables and Hyprland-specific notes:
 
-* **XDG\_CURRENT\_DESKTOP** must be set (so xdg-desktop-portal can detect your desktop type). Several users report that if the portal is started *before* that env var is propagated, the portal may not pick the correct backend — leading to “Unknown method ScreenCast” or a non-functional picker. Common remedy: ensure `XDG_CURRENT_DESKTOP=Hyprland` (or `hyprland`) is exported into the environment that starts `xdg-desktop-portal` (or update DBus/systemd activation), or add a `dbus-update-activation-environment` hook in Hyprland startup so systemd user services inherit the value. Example recommended Hyprland line:
+- **XDG_CURRENT_DESKTOP** must be set (so xdg-desktop-portal can detect your desktop type). Several users report that if the portal is started _before_ that env var is propagated, the portal may not pick the correct backend — leading to “Unknown method ScreenCast” or a non-functional picker. Common remedy: ensure `XDG_CURRENT_DESKTOP=Hyprland` (or `hyprland`) is exported into the environment that starts `xdg-desktop-portal` (or update DBus/systemd activation), or add a `dbus-update-activation-environment` hook in Hyprland startup so systemd user services inherit the value. Example recommended Hyprland line:
 
 ```ini
 # add to hyprland.conf (exec-once)
 exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 ```
 
-This forces systemd user units (like xdg-desktop-portal) to receive WAYLAND\_DISPLAY and XDG\_CURRENT\_DESKTOP from the compositor session. (Reported as effective in Hyprland community/GitHub issues.) ([GitHub][4])
+This forces systemd user units (like xdg-desktop-portal) to receive WAYLAND_DISPLAY and XDG_CURRENT_DESKTOP from the compositor session. (Reported as effective in Hyprland community/GitHub issues.) ([GitHub][4])
 
-* **Launching portals manually for debugging**: you can stop portal services and run them in a terminal to see live logs:
+- **Launching portals manually for debugging**: you can stop portal services and run them in a terminal to see live logs:
 
 ```bash
 systemctl --user stop xdg-desktop-portal
@@ -99,24 +99,22 @@ Flatpak note (if you use Flatpak apps): Flatpak sandboxes need access to PipeWir
 Short checklist (concrete):
 
 1. **Run Firefox under Wayland**:
-
-   * Launch with `MOZ_ENABLE_WAYLAND=1` (environment variable). Example:
+   - Launch with `MOZ_ENABLE_WAYLAND=1` (environment variable). Example:
 
      ```bash
      MOZ_ENABLE_WAYLAND=1 firefox
      ```
-   * Verify in `about:support` → *Window Protocol* shows `wayland`. If it says `x11`, Firefox is using XWayland and screen capture via PipeWire portals may not work consistently. ([Gist][7])
+
+   - Verify in `about:support` → _Window Protocol_ shows `wayland`. If it says `x11`, Firefox is using XWayland and screen capture via PipeWire portals may not work consistently. ([Gist][7])
 
 2. **Ensure WebRTC is enabled** (Firefox must allow peer connection / getUserMedia):
+   - In `about:config` confirm:
+     - `media.peerconnection.enabled` = `true` (default). If you disabled WebRTC for privacy, re-enable it to use screen sharing. ([Help center | MyOwnConference][8])
 
-   * In `about:config` confirm:
-
-     * `media.peerconnection.enabled` = `true` (default). If you disabled WebRTC for privacy, re-enable it to use screen sharing. ([Help center | MyOwnConference][8])
-   * There is not generally a separate Firefox pref to “use PipeWire” — Firefox uses the portal infrastructure; ensure the portal & PipeWire stack are present and that Firefox runs on Wayland. For Flatpak Firefox there are additional sandbox permissions (see Flatpak note above). ([Bugzilla][6])
+   - There is not generally a separate Firefox pref to “use PipeWire” — Firefox uses the portal infrastructure; ensure the portal & PipeWire stack are present and that Firefox runs on Wayland. For Flatpak Firefox there are additional sandbox permissions (see Flatpak note above). ([Bugzilla][6])
 
 3. **If you still get a blank/black preview**:
-
-   * Confirm `xdg-desktop-portal` and the Hyprland backend are running and that the portal received `XDG_CURRENT_DESKTOP` before starting. If not, restart portal after exporting that env var (see section 3). ([Arch Linux Forums][9])
+   - Confirm `xdg-desktop-portal` and the Hyprland backend are running and that the portal received `XDG_CURRENT_DESKTOP` before starting. If not, restart portal after exporting that env var (see section 3). ([Arch Linux Forums][9])
 
 Useful references showing these steps and examples / troubleshooting for Firefox + Wayland: Gist & Arch/Forum writeups. ([Gist][7])
 
@@ -126,9 +124,9 @@ Useful references showing these steps and examples / troubleshooting for Firefox
 
 Key facts & commands:
 
-* Historically Chromium required enabling the **WebRTC PipeWire capturer** flag (`chrome://flags/#enable-webrtc-pipewire-capturer`) or launching with a CLI feature flag. On modern Chromium/Chrome builds this may be enabled by default (Chromium/Chrome ≳ v110+), but on some distributions/versions you still need to enable it. Check `chrome://flags` for `WebRTC PipeWire support`. ([Ask Ubuntu][10])
+- Historically Chromium required enabling the **WebRTC PipeWire capturer** flag (`chrome://flags/#enable-webrtc-pipewire-capturer`) or launching with a CLI feature flag. On modern Chromium/Chrome builds this may be enabled by default (Chromium/Chrome ≳ v110+), but on some distributions/versions you still need to enable it. Check `chrome://flags` for `WebRTC PipeWire support`. ([Ask Ubuntu][10])
 
-* CLI alternatives (if the flag is not available or you want explicit control):
+- CLI alternatives (if the flag is not available or you want explicit control):
 
   ```bash
   # old style
@@ -140,7 +138,7 @@ Key facts & commands:
 
   (The exact feature name changed across Chrome releases; if one name has no effect, try the other and check `chrome://version` / `chrome://flags`.) ([Arch Linux Forums][11])
 
-* If you use Electron-based apps (Slack, Teams, etc.) they also need to have PipeWire support enabled (or be rebuilt with a newer Electron that supports PipeWire). For example, launching Slack with `--enable-features=WebRtcPipeWireCapturer` has been used as a workaround. ([Ask Ubuntu][10])
+- If you use Electron-based apps (Slack, Teams, etc.) they also need to have PipeWire support enabled (or be rebuilt with a newer Electron that supports PipeWire). For example, launching Slack with `--enable-features=WebRtcPipeWireCapturer` has been used as a workaround. ([Ask Ubuntu][10])
 
 Browser note: Chrome/Chromium typically picks up the PipeWire stream provided by xdg-desktop-portal automatically once PipeWire support is enabled; ensure `xdg-desktop-portal` with your compositor backend is functional. See Chromium/Edge/Chrome guidance pages. ([Ask Ubuntu][10])
 
@@ -152,40 +150,37 @@ I list the common failure modes and immediate checks/fixes:
 
 A. **Screen picker missing / “Unknown method ScreenCast” / no options in browser**
 
-* Cause: `xdg-desktop-portal` doesn’t know your compositor or backend; usually `XDG_CURRENT_DESKTOP` was not set, or the portal started before compositor session env vars propagated.
-* Fixes:
-
+- Cause: `xdg-desktop-portal` doesn’t know your compositor or backend; usually `XDG_CURRENT_DESKTOP` was not set, or the portal started before compositor session env vars propagated.
+- Fixes:
   1. Restart portal after ensuring `XDG_CURRENT_DESKTOP=Hyprland` is exported to the systemd user environment: `systemctl --user restart xdg-desktop-portal`. Or add `exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP` to `hyprland.conf` so values propagate on login. ([Arch Linux Forums][9])
 
 B. **Black screen in the captured thumbnail / black stream delivered to browser**
 
-* Causes: compositor backend or PipeWire stream is failing (GPU/bit-depth mismatch, xwayland issues, xwayland bridge), or PipeWire permissions.
-* Checks & fixes:
-
-  * Inspect portal and PipeWire logs: `journalctl --user -u xdg-desktop-portal -f` and `journalctl --user -u pipewire -f`. ([GitHub][4])
-  * Confirm Hyprland portal is installed (`xdg-desktop-portal-hyprland`) and there are no conflicting portal implementations running. Reinstall if necessary. ([Arch Linux][3])
-  * Check monitor bitdepth/color profile/format: Hyprland docs mention `bitdepth` must match physical monitor configuration for successful capture (rare but reported). ([Hyprland Wiki][12])
+- Causes: compositor backend or PipeWire stream is failing (GPU/bit-depth mismatch, xwayland issues, xwayland bridge), or PipeWire permissions.
+- Checks & fixes:
+  - Inspect portal and PipeWire logs: `journalctl --user -u xdg-desktop-portal -f` and `journalctl --user -u pipewire -f`. ([GitHub][4])
+  - Confirm Hyprland portal is installed (`xdg-desktop-portal-hyprland`) and there are no conflicting portal implementations running. Reinstall if necessary. ([Arch Linux][3])
+  - Check monitor bitdepth/color profile/format: Hyprland docs mention `bitdepth` must match physical monitor configuration for successful capture (rare but reported). ([Hyprland Wiki][12])
 
 C. **Poor performance / high CPU**
 
-* Causes: software fallback path, copying frames in software, or wrong PipeWire format negotiation.
-* Fixes:
-
-  * Ensure PipeWire uses hardware-accelerated capture path where available (compositor implementation does that). Keep PipeWire and WirePlumber up to date. Use GPU drivers correctly installed (Mesa/AMDGPU, Intel, NVIDIA proprietary). ([ArchWiki][1])
+- Causes: software fallback path, copying frames in software, or wrong PipeWire format negotiation.
+- Fixes:
+  - Ensure PipeWire uses hardware-accelerated capture path where available (compositor implementation does that). Keep PipeWire and WirePlumber up to date. Use GPU drivers correctly installed (Mesa/AMDGPU, Intel, NVIDIA proprietary). ([ArchWiki][1])
 
 D. **Flatpak sandbox prevents access (blank or no device shown)**
 
-* Solution: add Flatpak permission for pipewire socket or use the Flatpak portal integration (e.g., `--filesystem=xdg-run/pipewire-0` when invoking the flatpak) or use system browser. ([Bugzilla][6])
+- Solution: add Flatpak permission for pipewire socket or use the Flatpak portal integration (e.g., `--filesystem=xdg-run/pipewire-0` when invoking the flatpak) or use system browser. ([Bugzilla][6])
 
 E. **Electron apps (Teams/Slack) only show tabs or fail**
 
-* Reason: the embedded Electron may not include PipeWire support; they require CLI flags or a rebuilt Electron. Slack example: start with `--enable-features=WebRtcPipeWireCapturer` or use a newer build. ([Ask Ubuntu][10])
+- Reason: the embedded Electron may not include PipeWire support; they require CLI flags or a rebuilt Electron. Slack example: start with `--enable-features=WebRtcPipeWireCapturer` or use a newer build. ([Ask Ubuntu][10])
 
 When to gather logs & what to paste into bug reports:
 
-* `journalctl --user -u xdg-desktop-portal -b --no-pager`
-* `journalctl --user -u pipewire -b --no-pager`
-* Output of `ls -l /run/user/$UID/ | grep pipewire` and `pactl info` (if audio issues). ([GitHub][4])
+- `journalctl --user -u xdg-desktop-portal -b --no-pager`
+- `journalctl --user -u pipewire -b --no-pager`
+- Output of `ls -l /run/user/$UID/ | grep pipewire` and `pactl info` (if audio issues). ([GitHub][4])
 
 ---
 
@@ -220,12 +215,12 @@ Recipe (high-level steps on Arch):
 
 Utility and caveats:
 
-* **Pros**: supports overlays, selective capture, cropping, streaming optimizations, and works with apps that only accept camera input. Works around portal issues. ([Interfacing Linux][15])
-* **Cons**: higher setup complexity (kernel module + plugin), potential compatibility issues across kernel/OBS updates (some users report breakage across upgrades), and added latency compared with native PipeWire capture. Also requires permission to load kernel modules (not ideal on locked down systems). ([Arch Linux Forums][16])
+- **Pros**: supports overlays, selective capture, cropping, streaming optimizations, and works with apps that only accept camera input. Works around portal issues. ([Interfacing Linux][15])
+- **Cons**: higher setup complexity (kernel module + plugin), potential compatibility issues across kernel/OBS updates (some users report breakage across upgrades), and added latency compared with native PipeWire capture. Also requires permission to load kernel modules (not ideal on locked down systems). ([Arch Linux Forums][16])
 
 Practical links / guides:
 
-* ArchWiki `v4l2loopback` page and OBS virtual camera guides. ([ArchWiki][13])
+- ArchWiki `v4l2loopback` page and OBS virtual camera guides. ([ArchWiki][13])
 
 ---
 
@@ -300,21 +295,21 @@ sudo modprobe v4l2loopback devices=1 video_nr=10 exclusive_caps=1
 
 (Selected — each section above cites at least three sources; below are the most relevant single-click references for deeper reading.)
 
-* Hyprland / Hypr ecosystem pages (screen-sharing notes & portal info). ([Hyprland Wiki][12])
-* Arch Linux package page for `xdg-desktop-portal-hyprland`. ([Arch Linux][3])
-* ArchWiki: **PipeWire** and **XDG Desktop Portal** explanatory pages. ([ArchWiki][1])
-* Chromium/Chrome flag notes and AskUbuntu explanation of `enable-webrtc-pipewire-capturer`. ([Ask Ubuntu][10])
-* Firefox / Wayland community guidance & Flatpak caveats (MOZ\_ENABLE\_WAYLAND, sandbox permissions). ([Gist][7])
-* GitHub/issue reports describing black screen / env var fixes (Hyprland portal issues and suggested `dbus-update-activation-environment` remedy). ([GitHub][4])
-* OBS virtual camera / v4l2loopback guides and AUR `obs-v4l2sink`. ([ArchWiki][13])
+- Hyprland / Hypr ecosystem pages (screen-sharing notes & portal info). ([Hyprland Wiki][12])
+- Arch Linux package page for `xdg-desktop-portal-hyprland`. ([Arch Linux][3])
+- ArchWiki: **PipeWire** and **XDG Desktop Portal** explanatory pages. ([ArchWiki][1])
+- Chromium/Chrome flag notes and AskUbuntu explanation of `enable-webrtc-pipewire-capturer`. ([Ask Ubuntu][10])
+- Firefox / Wayland community guidance & Flatpak caveats (MOZ_ENABLE_WAYLAND, sandbox permissions). ([Gist][7])
+- GitHub/issue reports describing black screen / env var fixes (Hyprland portal issues and suggested `dbus-update-activation-environment` remedy). ([GitHub][4])
+- OBS virtual camera / v4l2loopback guides and AUR `obs-v4l2sink`. ([ArchWiki][13])
 
 ---
 
 If you want, I can:
 
-* produce a ready-to-run shell script that installs (AUR bits excepted), enables the user services, and prints verification commands; **or**
-* provide a ready `hyprland.conf` snippet to add `exec-once` and an environment file for `XDG_CURRENT_DESKTOP`, or
-* generate an OBS step-by-step script including `modprobe` options you can paste.
+- produce a ready-to-run shell script that installs (AUR bits excepted), enables the user services, and prints verification commands; **or**
+- provide a ready `hyprland.conf` snippet to add `exec-once` and an environment file for `XDG_CURRENT_DESKTOP`, or
+- generate an OBS step-by-step script including `modprobe` options you can paste.
 
 Tell me which of those you want next (script, config snippet, or both) and I’ll produce it immediately.
 
@@ -333,6 +328,6 @@ Tell me which of those you want next (script, config snippet, or both) and I’l
 [13]: https://wiki.archlinux.org/title/V4l2loopback?utm_source=chatgpt.com "v4l2loopback"
 [14]: https://forum.endeavouros.com/t/obs-studio-flatpak-version-does-not-support-virtual-camera/54987?utm_source=chatgpt.com "OBS studio flatpak version does not support virtual camera"
 [15]: https://interfacinglinux.com/2024/01/09/obs-virtual-webcam-on-linux/?utm_source=chatgpt.com "OBS Virtual Webcam On Linux"
+
 [16]: https://bbs.archlinux.org/viewtopic.php?id=305169&utm_source=chatgpt.com "Anyone else with an \"v4l2loopback/virtual camera\" issue ..."
 [17]: https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.impl.portal.ScreenCast.html?utm_source=chatgpt.com "ScreenCast - XDG Desktop Portal documentation - Flatpak"
-
