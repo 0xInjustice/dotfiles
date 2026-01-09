@@ -1,4 +1,3 @@
--- Lualine status bar
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()

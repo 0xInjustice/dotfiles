@@ -1,3 +1,3 @@
+require("config.lazy")
 require("main.settings")
-require("main.keymaps")
-require("main.lazy")
+require("main.shortcuts")
