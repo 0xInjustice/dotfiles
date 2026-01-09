@@ -1,24 +1,17 @@
--- Treesitter for syntax highlighting
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
-	run = ":TSUpdate",
-	config = function()
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"python",
-				"lua",
-				"c",
-				"cpp",
-				"bash",
-				"json",
-				"yaml",
-				"markdown",
-				"markdown_inline",
-				"c",
-				"rust",
-			},
-			highlight = { enable = true },
-		})
-	end,
+	event = "BufReadPost",
+	build = ":TSUpdate",
+	opts = {
+		ensure_installed = { "c", "cpp", "lua", "python", "javascript", "typescript", "html", "css" },
+		sync_install = false,
+		auto_install = true,
+		highlight = {
+			enable = true,
+			additional_vim_regex_highlighting = true,
+		},
+		indent = {
+			enable = true,
+		},
+	},
 }
