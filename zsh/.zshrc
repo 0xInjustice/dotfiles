@@ -72,6 +72,7 @@ alias update='sudo pacman -Syu &&  yay -Syu'
 alias resolve='/opt/resolve/bin/resolve'
 alias pacins='sudo pacman -S'
 
+alias refl='sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --download-timeout 20 --country India --connection-timeout 25'
 alias blestrt='sudo systemctl start bluetooth '
 alias blestop='sudo systemctl stop bluetooth '
 
