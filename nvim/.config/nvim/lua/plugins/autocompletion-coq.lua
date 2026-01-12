@@ -8,38 +8,34 @@ return {
 	},
 
 	init = function()
+		-- 1. Global COQ Settings
 		vim.g.coq_settings = {
 			auto_start = true,
 			keymap = {
-				recommended = false,
+				recommended = false, -- Disable default maps
 			},
 		}
+
+		-- 2. Force Keymap using Vimscript (Highest Priority)
+		-- This ensures that when the menu is open (pumvisible), Enter confirms selection (<C-y>)
+		vim.cmd([[
+            inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+        ]])
 	end,
 
 	config = function()
 		local coq = require("coq")
+		local lspconfig = require("lspconfig")
 
-		vim.lsp.config(
-			"lua_ls",
-			coq.lsp_ensure_capabilities({
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
-			})
-		)
-		vim.lsp.enable("lua_ls")
+		-- 3. Setup Servers
+		-- NOTE: Your lua_ls is corrupt (based on logs).
+		-- It will error until you reinstall it via system package manager or Mason.
+		lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities({
+			settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+		}))
 
-		vim.lsp.config("pyright", coq.lsp_ensure_capabilities({}))
-		vim.lsp.enable("pyright")
-
-		vim.lsp.config("clangd", coq.lsp_ensure_capabilities({}))
-		vim.lsp.enable("clangd")
-
-		vim.lsp.config("bashls", coq.lsp_ensure_capabilities({}))
-		vim.lsp.enable("bashls")
+		lspconfig.pyright.setup(coq.lsp_ensure_capabilities({}))
+		lspconfig.clangd.setup(coq.lsp_ensure_capabilities({}))
+		lspconfig.bashls.setup(coq.lsp_ensure_capabilities({}))
 	end,
 }
