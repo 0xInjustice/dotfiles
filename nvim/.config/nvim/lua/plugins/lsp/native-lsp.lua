@@ -31,13 +31,12 @@ return {
 		local on_attach = function(_, bufnr)
 			local opts = { buffer = bufnr, silent = true }
 
-			-- Indentation (unchanged)
-			vim.bo[bufnr].tabstop = 4
-			vim.bo[bufnr].shiftwidth = 4
-			vim.bo[bufnr].softtabstop = 4
-			vim.bo[bufnr].expandtab = false
-			vim.bo[bufnr].autoindent = true
-			vim.bo[bufnr].smartindent = true
+			-- vim.bo[bufnr].tabstop = 4
+			-- vim.bo[bufnr].shiftwidth = 4
+			-- vim.bo[bufnr].softtabstop = 4
+			-- vim.bo[bufnr].expandtab = false
+			-- vim.bo[bufnr].autoindent = true
+			-- vim.bo[bufnr].smartindent = true
 
 			-- FZF-Lua
 			vim.keymap.set("n", "gR", fzf.lsp_references, opts)
