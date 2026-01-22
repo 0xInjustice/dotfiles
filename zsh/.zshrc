@@ -3,8 +3,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+	mkdir -p "$(dirname $ZINIT_HOME)"
+	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Source/Load zinit
@@ -58,10 +58,15 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias mv='mv -v'
+alias cp='cp -v'
+alias mkdir='mkdir -v'
 alias c='clear'
 alias x='exit'
 alias std='shutdown now'
 alias rbt='sudo reboot now'
+
+
 alias tsx='tmux new -s'
 alias tat="tmux attach -t"
 alias tde='tmux detach -s'
