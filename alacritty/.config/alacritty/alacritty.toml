@@ -6,7 +6,7 @@ startup_mode = "Fullscreen"
 padding.x = 0
 padding.y = 0
 decorations = "Buttonless"
-# opacity=0.8
+ opacity=0.8
 blur=true
 title="omega"
 
@@ -22,7 +22,7 @@ save_to_clipboard = true
 [cursor]
 blink_interval= 200
 
-[general]
-import = [
-    "~/.config/alacritty/theme.toml"
-]
+# [general]
+# import = [
+#     "~/.config/alacritty/theme.toml"
+# ]
