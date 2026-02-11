@@ -30,6 +30,6 @@ map ctrl+shift+t nop
 
 
 # BEGIN_KITTY_THEME
-# Default
+# graphite
 include current-theme.conf
 # END_KITTY_THEME
