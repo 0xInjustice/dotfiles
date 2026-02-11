@@ -30,50 +30,49 @@ return {
 			quote = { repeat_linebreak = true },
 			win_options = {
 				showbreak = {
-					default = "",
-					rendered = "  ",
+					default = '',
+					rendered = '  ',
 				},
 				breakindent = {
 					default = false,
 					rendered = true,
 				},
 				breakindentopt = {
-					default = "",
-					rendered = "",
+					default = '',
+					rendered = '',
 				},
 			},
-			checkbox = { checked = { scope_highlight = "@markup.strikethrough" } },
+			checkbox = { checked = { scope_highlight = '@markup.strikethrough' } },
 			code = {
-				width = "block",
-				left_pad = 2,
-				right_pad = 4,
+				style = 'normal',
+				border = 'thick',
 			},
 			dash = {
 				enabled = true,
 				render_modes = false,
-				icon = "─",
-				width = "full",
+				icon = '─',
+				width = 'full',
 				left_margin = 0,
 				priority = nil,
-				highlight = "RenderMarkdownDash",
+				highlight = 'RenderMarkdownDash',
 			},
 			heading = {
-				width = { "full" },
+				width = { 'full' },
 			},
 			indent = { enabled = true },
-			link = { image = "󰋵 " },
+			link = { image = '󰋵 ' },
 			bullet = {
 				enabled = true,
 				render_modes = false,
-				icons = { "●", "○", "◆", "◇" },
+				icons = { '●', '○', '◆', '◇' },
 				ordered_icons = function(ctx)
 					local value = vim.trim(ctx.value)
 					local index = tonumber(value:sub(1, #value - 1))
-					return ("%d."):format(index > 1 and index or ctx.index)
+					return ('%d.'):format(index > 1 and index or ctx.index)
 				end,
 				left_pad = 0,
 				right_pad = 0,
-				highlight = "RenderMarkdownBullet",
+				highlight = 'RenderMarkdownBullet',
 				scope_highlight = {},
 				scope_priority = nil,
 			},
@@ -85,5 +84,6 @@ return {
 				min_width = 0,
 			},
 		})
+
 	end,
 }

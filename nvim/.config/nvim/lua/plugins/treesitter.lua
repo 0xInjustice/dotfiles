@@ -3,7 +3,7 @@ return {
 	event = "BufReadPost",
 	build = ":TSUpdate",
 	opts = {
-		ensure_installed = { "c", "cpp", "lua", "python", "javascript", "typescript", "html", "css" },
+		ensure_installed = { "c", "cpp", "lua", "python", "javascript", "typescript", "html", "css", "rust" },
 		sync_install = false,
 		auto_install = true,
 		highlight = {
