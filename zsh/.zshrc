@@ -42,7 +42,7 @@ git_signs() {
     if [[ $staged && $unstaged ]]; then
         echo "%F{red}✗%f"
     elif [[ $unstaged ]]; then
-        echo "%F{yellow}~%f"
+        echo "%F{white}~%f"
     elif [[ $staged ]]; then
         echo "%F{green}+%f"
     else
