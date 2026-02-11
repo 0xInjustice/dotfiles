@@ -28,8 +28,7 @@ map ctrl+alt+s show_scrollback
 map ctrl+shift+t nop
 
 
-
 # BEGIN_KITTY_THEME
-# graphite
+# PaperColor Dark
 include current-theme.conf
 # END_KITTY_THEME
