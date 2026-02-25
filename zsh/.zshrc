@@ -113,3 +113,7 @@ export PATH="$PATH:$HOME/dotfiles/scripts"
 export PATH="$PATH:/home/injustice/go"
 
 zinit cdreplay -q
+
+# Added by Hugging Face CLI installer
+export PATH="/home/injustice/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
