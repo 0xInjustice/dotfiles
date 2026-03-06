@@ -20,4 +20,3 @@ httpx-pd -l subdomains.txt -mc 403 > subdomains_403.txt &
 httpx-pd -l subdomains.txt -mc 404 > subdomains_404.txt &
 
 wait 
-
