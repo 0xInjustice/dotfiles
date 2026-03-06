@@ -3,7 +3,7 @@ bold_font          auto
 italic_font        M+1Code Nerd Font Mono italic
 bold_italic_font   auto
 
-font_size  12.0
+font_size  10.0
 
 enable_audio_bell no
 cursor_trail 1
@@ -29,6 +29,6 @@ map ctrl+shift+t nop
 
 
 # BEGIN_KITTY_THEME
-# PaperColor Dark
+# Adwaita darker
 include current-theme.conf
 # END_KITTY_THEME
