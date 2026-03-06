@@ -9,12 +9,11 @@ zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
-
+zinit light zsh-users/zsh-history-substring-search
 zinit ice lucid wait
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
-
 eval "$(zoxide init --cmd cd zsh)"
 
 zstyle ':completion:*' completer _complete _approximate
@@ -23,10 +22,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color=auto $realpath'
 
+autoload -Uz compinit
 if [[ ! -f ~/.zcompdump ]]; then
-    autoload -Uz compinit && compinit
+    compinit
 else
-    autoload -Uz compinit && compinit -C
+    compinit -C
 fi
 
 autoload -Uz vcs_info
@@ -34,7 +34,7 @@ zstyle ':vcs_info:git:*' formats ' %F{yellow}%b%f'
 zstyle ':vcs_info:git:*' actionformats ' %F{yellow}%b|%a%f'
 
 git_signs() {
-    [[ -d .git ]] || return ''
+    [[ -d .git ]] || return
     local unstaged staged
     git diff --quiet --ignore-submodules HEAD 2>/dev/null || unstaged=1
     git diff --cached --quiet --ignore-submodules HEAD 2>/dev/null || staged=1
@@ -56,7 +56,6 @@ setopt prompt_subst
 
 WHITE='%F{white}'
 RED='%F{red}'
-BLUE='%F{blue}'
 
 if [[ $EUID -eq 0 ]]; then
     USER_COLOR=$RED
@@ -75,11 +74,18 @@ SAVEHIST=50000
 setopt append_history inc_append_history hist_ignore_dups hist_ignore_space hist_reduce_blanks extended_history
 
 bindkey -e
-bindkey '^j' history-search-backward
-bindkey '^k' history-search-forward
+
+# Substring history search (refines as you type)
+autoload -Uz history-substring-search-up
+autoload -Uz history-substring-search-down
+zle -N history-substring-search-up
+zle -N history-substring-search-down
+bindkey '^j' history-substring-search-up
+bindkey '^k' history-substring-search-down
+
 bindkey '^[w' kill-region
-bindkey '^h' vi-forward-char
-bindkey '^n' vi-backward-char
+bindkey '^h' forward-char
+bindkey '^n' backward-char
 
 alias ls='ls --color'
 alias mv='mv -v'
@@ -90,7 +96,7 @@ alias x='exit'
 alias std='shutdown now'
 alias rbt='sudo reboot now'
 alias tsx='tmux new -s'
-alias tat="tmux attach -t"
+alias tat='tmux attach -t'
 alias tde='tmux detach -s'
 alias tcl='tmux kill-server'
 alias z='zoxide'
@@ -110,10 +116,7 @@ alias glg='git log'
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/scripts"
-export PATH="$PATH:/home/injustice/go"
+export PATH="$PATH:$HOME/go/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 zinit cdreplay -q
-
-# Added by Hugging Face CLI installer
-export PATH="/home/injustice/.local/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
