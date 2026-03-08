@@ -112,7 +112,9 @@ alias gst='git status'
 alias gad='git add'
 alias gcmt='git commit'
 alias glg='git log'
+alias thm='cd Documents && sudo openvpn *.ovpn'
 
+alias src='source "$HOME/hackenv/bin/activate"'
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/scripts"
