@@ -1,40 +1,41 @@
-return {
-	"miikanissi/modus-themes.nvim",
-	priority = 1000,
-	config = function()
-		-- Default options
-		require("modus-themes").setup({
-			-- Theme comes in two styles `modus_operandi` and `modus_vivendi`
-			-- `auto` will automatically set style based on background set with vim.o.background
-			style = "auto",
-			variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
-			transparent = true, -- Transparent background (as supported by the terminal)
-			dim_inactive = true, -- "non-current" windows are dimmed
-			hide_inactive_statusline = true, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
-			line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
-			sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
-			styles = {
-				-- Style to be applied to different syntax groups
-				-- Value is any valid attr-list value for `:help nvim_set_hl`
-				comments = { italic = true },
-				keywords = { italic = true },
-				functions = {},
-				variables = {},
-			},
+-- lua/colorscheme.lua
+local M = {}
 
-			--- You can override specific color groups to use other groups or a hex color
-			--- Function will be called with a ColorScheme table
-			--- Refer to `extras/lua/modus_operandi.lua` or `extras/lua/modus_vivendi.lua` for the ColorScheme table
-			---@param colors ColorScheme
-			on_colors = function(colors) end,
+M.setup = function()
+	local colors = {
+		bg = "#000000", -- pure black background
+		fg = "#ffffff", -- bright white foreground
+		red = "#ff5555",
+		green = "#50fa7b",
+		yellow = "#f1fa8c",
+		blue = "#6272a4",
+		magenta = "#ff79c6",
+		cyan = "#8be9fd",
+		white = "#f8f8f2",
+	}
 
-			--- You can override specific highlights to use other groups or a hex color
-			--- Function will be called with a Highlights and ColorScheme table
-			--- Refer to `extras/lua/modus_operandi.lua` or `extras/lua/modus_vivendi.lua` for the Highlights and ColorScheme table
-			---@param highlights Highlights
-			---@param colors ColorScheme
-			on_highlights = function(highlights, colors) end,
-		})
-		vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
-	end,
-}
+	vim.cmd("highlight clear")
+	vim.o.termguicolors = true
+	vim.o.background = "dark"
+
+	-- Core highlights
+	vim.api.nvim_set_hl(0, "Normal", { fg = colors.fg, bg = colors.bg })
+	vim.api.nvim_set_hl(0, "Comment", { fg = colors.green, italic = true })
+	vim.api.nvim_set_hl(0, "String", { fg = colors.cyan })
+	vim.api.nvim_set_hl(0, "Keyword", { fg = colors.magenta, bold = true })
+	vim.api.nvim_set_hl(0, "Function", { fg = colors.blue })
+	vim.api.nvim_set_hl(0, "Type", { fg = colors.yellow })
+	vim.api.nvim_set_hl(0, "Constant", { fg = colors.red })
+	vim.api.nvim_set_hl(0, "Identifier", { fg = colors.white })
+
+	-- Markdown highlights
+	vim.api.nvim_set_hl(0, "markdownH1", { fg = colors.magenta, bold = true })
+	vim.api.nvim_set_hl(0, "markdownH2", { fg = colors.magenta, bold = true })
+	vim.api.nvim_set_hl(0, "markdownH3", { fg = colors.magenta, bold = true })
+	vim.api.nvim_set_hl(0, "markdownLinkText", { fg = colors.cyan, underline = true })
+	vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = colors.green, italic = true })
+end
+
+M.setup()
+
+return M
