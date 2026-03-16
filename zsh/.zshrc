@@ -112,7 +112,7 @@ alias gst='git status'
 alias gad='git add'
 alias gcmt='git commit'
 alias glg='git log'
-alias thm='cd Documents && sudo openvpn *.ovpn'
+alias start='start-hyprland'
 
 alias src='source "$HOME/hackenv/bin/activate"'
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
