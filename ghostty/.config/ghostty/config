@@ -5,6 +5,8 @@ font-size = 12
 font-family = "Hack Nerd Font"
 
 keybind = global:alt+;=toggle_quick_terminal
+keybind = ctrl+enter=ignore
+keybind = ctrl+enter=unbind
 
 palette = 0=#0c1a2b
 palette = 1=#ff3b3b
