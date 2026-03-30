@@ -31,12 +31,12 @@ return {
 		local on_attach = function(_, bufnr)
 			local opts = { buffer = bufnr, silent = true }
 
-			-- vim.bo[bufnr].tabstop = 4
-			-- vim.bo[bufnr].shiftwidth = 4
-			-- vim.bo[bufnr].softtabstop = 4
-			-- vim.bo[bufnr].expandtab = false
-			-- vim.bo[bufnr].autoindent = true
-			-- vim.bo[bufnr].smartindent = true
+			vim.bo[bufnr].tabstop = 4
+			vim.bo[bufnr].shiftwidth = 4
+			vim.bo[bufnr].softtabstop = 4
+			vim.bo[bufnr].expandtab = false
+			vim.bo[bufnr].autoindent = true
+			vim.bo[bufnr].smartindent = true
 
 			-- FZF-Lua
 			vim.keymap.set("n", "gR", fzf.lsp_references, opts)
@@ -108,16 +108,33 @@ return {
 
 				-- clangd
 				clangd = function()
+					-- clangd has its own offset encoding, this prevents the warning
+					local clangd_caps = require("blink.cmp").get_lsp_capabilities()
+					clangd_caps.offsetEncoding = { "utf-16" }
+
 					lspconfig.clangd.setup({
-						capabilities = capabilities,
-						on_attach = on_attach,
+						capabilities = clangd_caps,
+						on_attach = function(client, bufnr)
+							on_attach(client, bufnr)
+							-- Switch between header and source file
+							vim.keymap.set(
+								"n",
+								"<leader>ch",
+								"<cmd>ClangdSwitchSourceHeader<cr>",
+								{ buffer = bufnr, desc = "Switch Source/Header" }
+							)
+						end,
 						cmd = {
 							"clangd",
 							"--background-index",
 							"--clang-tidy",
 							"--completion-style=detailed",
+							"--function-arg-placeholders", -- fills in arg names on accept
+							"--header-insertion=iwyu", -- smarter #include insertion
+							"--fallback-style=llvm", -- used when no .clang-format exists
+							"--offset-encoding=utf-16", -- avoids encoding mismatch warnings
 						},
-						filetypes = { "c", "cpp", "objc", "objcpp" },
+						filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 					})
 				end,
 
