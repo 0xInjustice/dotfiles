@@ -6,9 +6,7 @@ return {
 	},
 	config = function()
 		local mason = require("mason")
-
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
 
 		mason.setup({
@@ -33,7 +31,6 @@ return {
 				"prismals",
 				"pyright",
 				"clangd",
-				"clang-format",
 				"ts_ls",
 			},
 		})
@@ -45,6 +42,7 @@ return {
 				"isort", -- python formatter
 				"black", -- python formatter
 				"eslint_d",
+				"clang-format",
 			},
 		})
 	end,
