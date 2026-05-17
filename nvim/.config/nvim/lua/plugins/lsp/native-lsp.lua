@@ -5,13 +5,13 @@ return {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"saghen/blink.cmp",
-		"folke/neodev.nvim",
+		"folke/lazydev.nvim",
 		{ "ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
 	},
 	config = function()
-		require("neodev").setup()
+		require("lazydev").setup()
 
-		local lspconfig_configs = require("lspconfig.configs")
+		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
 		local fzf = require("fzf-lua")
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -32,7 +32,7 @@ return {
 				vim.keymap.set("n", "gd", fzf.lsp_definitions, opts)
 				vim.keymap.set("n", "gR", fzf.lsp_references, opts)
 				vim.keymap.set("n", "gi", fzf.lsp_implementations, opts)
-				vim.keymap.set("n", "gt", fzf.lsp_typedefs, opts)
+				vim.keymap.set("n", "gy", fzf.lsp_typedefs, opts)
 				-- vim.keymap.set({ "n", "v" }, "<leader>ca", fzf.lsp_code_actions, opts)
 
 				-- Built-in LSP mappings
@@ -108,18 +108,30 @@ return {
 				end
 			end
 
-			-- Use modern Neovim 0.11+ API via nvim-lspconfig
-			local server_config = lspconfig_configs[server_name]
-			if server_config then
-				server_config.setup(config)
+			-- Bypassing the deprecated require('lspconfig') entry point
+			-- to avoid the 'framework is deprecated' warning.
+			local configs = require("lspconfig.configs")
+			if not configs[server_name] then
+				pcall(require, "lspconfig.configs." .. server_name)
+			end
+
+			if configs[server_name] then
+				configs[server_name].setup(config)
 			end
 		end
 
 		-- Setup all installed servers from Mason
 		local installed_servers = mason_lspconfig.get_installed_servers()
 		for _, server_name in ipairs(installed_servers) do
-			-- Check if it's actually an LSP server (avoid things like stylua)
-			if lspconfig_configs[server_name] then
+			-- Only setup if it's a valid lspconfig server (avoid things like stylua)
+			-- In Neovim 0.11+, configs are found in lsp/*.lua
+			local config_exists = vim.api.nvim_get_runtime_file("lsp/" .. server_name .. ".lua", false)[1] ~= nil
+			-- Fallback check for older versions or custom configs
+			if not config_exists then
+				config_exists = pcall(require, "lspconfig.configs." .. server_name)
+			end
+
+			if config_exists then
 				setup_server(server_name)
 			end
 		end

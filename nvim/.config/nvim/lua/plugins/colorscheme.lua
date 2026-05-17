@@ -22,6 +22,17 @@ return {
 
 		-- Core highlights
 		vim.api.nvim_set_hl(0, "Normal", { fg = colors.fg, bg = colors.bg })
+		vim.api.nvim_set_hl(0, "NormalNC", { fg = colors.fg, bg = colors.bg })
+		vim.api.nvim_set_hl(0, "SignColumn", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "LineNr", { fg = colors.white, bg = colors.bg })
+		vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.white, bg = colors.bg, bold = true })
+		vim.api.nvim_set_hl(0, "Folded", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "FoldColumn", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "VertSplit", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "WinSeparator", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "StatusLine", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = colors.bg })
 		vim.api.nvim_set_hl(0, "Comment", { fg = colors.green, italic = true })
 		vim.api.nvim_set_hl(0, "String", { fg = colors.cyan })
 		vim.api.nvim_set_hl(0, "Keyword", { fg = colors.portage, bold = true })

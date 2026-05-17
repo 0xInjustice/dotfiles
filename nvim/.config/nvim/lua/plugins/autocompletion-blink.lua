@@ -14,16 +14,6 @@ return {
 		keymap = {
 			preset = "none",
 
-			["<CR>"] = {
-				function(cmp)
-					if cmp.is_visible() then
-						return cmp.accept()
-					end
-					return "\n"
-				end,
-				"fallback",
-			},
-
 			["<C-j>"] = { "select_next" },
 			["<C-k>"] = { "select_prev" },
 			["<C-e>"] = { "hide" },

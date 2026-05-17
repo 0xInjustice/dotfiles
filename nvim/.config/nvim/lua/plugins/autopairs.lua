@@ -1,6 +1,7 @@
 return {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",
+	dependencies = { "saghen/blink.cmp" },
 	config = function()
 		local npairs = require("nvim-autopairs")
 		local blink = require("blink.cmp")
@@ -18,14 +19,12 @@ return {
 
 		-- Unified <CR>: blink.cmp first, autopairs fallback
 		vim.keymap.set("i", "<CR>", function()
-			-- blink completion visible
 			if blink.is_visible() then
-				-- accept selected item, or first item if none selected
-				return blink.accept({ select = true })
+				if blink.accept({ select = true }) then
+					return ""
+				end
 			end
-
-			-- no completion menu → autopairs newline handling
 			return npairs.autopairs_cr()
-		end, { expr = true, replace_keycodes = false })
+		end, { expr = true, replace_keycodes = true })
 	end,
 }

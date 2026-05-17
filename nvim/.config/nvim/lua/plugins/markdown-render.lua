@@ -21,10 +21,6 @@ return {
 			enabled = true,
 			render_modes = { "n", "c", "t" },
 
-			completions = {
-				coq = { enabled = true },
-			},
-
 			anti_conceal = {
 				enabled = true,
 				disabled_modes = false,
