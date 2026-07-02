@@ -113,6 +113,7 @@ alias gad='git add'
 alias gcmt='git commit'
 alias glg='git log'
 alias start='start-hyprland'
+alias ll='ls -la'
 
 alias src='source "$HOME/hackenv/bin/activate"'
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
