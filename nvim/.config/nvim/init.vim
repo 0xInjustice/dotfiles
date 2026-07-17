@@ -112,6 +112,20 @@ nnoremap <leader>tn :tabn<CR>
 nnoremap <leader>tp :tabp<CR>
 nnoremap <leader>tf :tabnew %<CR>
 
+" Go to specific tabs using Leader + Number
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+
+" Go to the last tab easily
+nnoremap <leader>0 :tablast<cr>
+
 if has('win32') || has('win64')
 else
     set path+=/usr/include/**,/usr/local/include/**
@@ -142,34 +156,6 @@ nnoremap <leader><leader>q :q<CR>
 nnoremap <leader>qq :qa!<CR>
 nnoremap <leader>'' :reg<CR>
 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_winsize = 28
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_keepdir = 1
-let g:netrw_fastbrowse = 0
-let g:netrw_preview = 1
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-
-if has('win32') || has('win64')
-    let g:netrw_localcopydircmd = 'xcopy /E /I /Y'
-else
-    let g:netrw_localcopydircmd = 'cp -r'
-endif
-
-function! ToggleExplorer()
-    for win in getwininfo()
-        if getbufvar(win.bufnr, '&filetype') ==# 'netrw'
-            execute win.winnr . 'wincmd w'
-            close
-            return
-        endif
-    endfor
-    Lexplore
-endfunction
-
-nnoremap <silent> <leader>ee <Cmd>call ToggleExplorer()<CR>
 nnoremap <silent> <leader>er <Cmd>Explore<CR>
 nnoremap <silent><buffer> <C-h> <C-w>h
 nnoremap <silent><buffer> <C-j> <C-w>j
@@ -485,3 +471,106 @@ if has('nvim')
     nnoremap <silent> [d <Cmd>lua vim.diagnostic.goto_prev()<CR>
     nnoremap <silent> <leader>e <Cmd>lua vim.diagnostic.open_float()<CR>
 endif
+
+" CLANG
+
+if has('nvim')
+
+lua << EOF
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp" },
+    callback = function(args)
+
+        vim.lsp.start({
+            name = "clangd",
+            cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy",
+                "--completion-style=detailed",
+                "--header-insertion=iwyu",
+            },
+            root_dir = vim.fs.root(args.buf, {
+                ".git",
+                "compile_commands.json",
+                "compile_flags.txt",
+            }),
+        })
+
+        local opts = { buffer = args.buf }
+
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+
+    end,
+})
+
+EOF
+
+endif
+
+" ============================================================================
+" Plugins
+" ============================================================================
+
+" ============================================================================
+" File Explorer: Project Drawer (nvim-tree.lua)
+" ============================================================================
+
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+lua << EOF
+vim.pack.add({
+    { src = "https://github.com/nvim-tree/nvim-tree.lua" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+})
+
+require("nvim-tree").setup({
+    auto_reload_on_write = true,
+    
+    view = {
+        width = 30,
+        side = "left",
+        preserve_window_proportions = true,
+    },
+    
+    actions = {
+        open_file = {
+            quit_on_open = false,
+            
+            window_picker = {
+                enable = true,
+                picker = "default",
+                chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+            },
+        },
+    },
+    
+    renderer = {
+        group_empty = true, -- Groups empty folders together (e.g. src/main/java)
+        highlight_git = true,
+        icons = {
+            show = {
+                git = true,
+                folder = true,
+                file = true,
+                folder_arrow = true,
+            },
+        },
+    },
+    
+    filters = {
+        dotfiles = false,
+        custom = { "^.git$" }, -- Hide the .git folder to reduce clutter
+    },
+})
+EOF
+
+nnoremap <silent> <leader>ee :NvimTreeToggle<CR>

@@ -1,0 +1,16 @@
+{
+  "plugins": {
+    "nvim-tree.lua": {
+      "rev": "4213bd6eabac38b16dd6615002b6243b23cf3bf6",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua"
+    },
+    "nvim-web-devicons": {
+      "rev": "0ca28b61a04fe7426cefbdd52c2647ef0e335b5f",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "oil.nvim": {
+      "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
+      "src": "https://github.com/stevearc/oil.nvim"
+    }
+  }
+}
