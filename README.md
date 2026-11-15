@@ -2,7 +2,7 @@
 
 ```bash
 sudo pacman -S neovim git python easyeffects reflector bluez blueman bluez-utils p7zip unzip unrar firefox vlc stow tmux zsh fzf zoxide lsp-plugins unzip npm wl-clipboard swaync dolphin wofi cliphist brightnessctl xdg-desktop-portal-hyprland wireplumber pipewire hyprpaper noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-indic-otf android-tools
-yay -S  oh-my-posh kanata hyprshot xwaylandvideobridge sioyek
+yay -S  kanata hyprshot xwaylandvideobridge sioyek
 ```
 
 ## Pacman
@@ -144,27 +144,11 @@ sudo virsh net-start default
 sudo virsh net-autostart default
 ```
 
-### Commit Message Guidelines
+```sh
+mkdir -p $HOME/opt/{bin,include,source,lib}
 
-- **feat**: A new feature is introduced with the changes.
-- **fix**: A bug fix has occurred.
-- **chore**: Changes that do not relate to a fix or feature and don't modify `src` or `test` files (e.g., updating dependencies).
-- **refactor**: Refactored code that neither fixes a bug nor adds a feature.
-- **docs**: Updates to documentation such as the README or other markdown files.
-- **style**: Changes that do not affect the meaning of the code (e.g., code formatting, white-space, missing semicolons, etc.).
-- **test**: Adding new tests or correcting previous tests.
-- **perf**: Performance improvements.
-- **ci**: Continuous integration related changes.
-- **build**: Changes that affect the build system or external dependencies.
-- **revert**: Reverts a previous commit.
-
-Please ensure that commit messages are clear and descriptive. This helps in automating releases, generating changelogs, and simplifying the review process.
-
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/opt ..
+cmake --build .
+cmake --install .
 ```
 
-```
-
-export **GLX_VENDOR_LIBRARY_NAME=nvidia
-export **VK_LAYER_NV_optimus=NVIDIA_only
-davinci-resolve
-"

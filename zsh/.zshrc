@@ -123,3 +123,10 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
 zinit cdreplay -q
+
+export PATH="$HOME/opt/bin:$PATH"
+
+export C_INCLUDE_PATH="$HOME/opt/include:$C_INCLUDE_PATH"
+export LIBRARY_PATH="$HOME/opt/lib:$LIBRARY_PATH"
+
+export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
